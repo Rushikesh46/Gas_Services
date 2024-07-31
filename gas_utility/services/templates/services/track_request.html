@@ -1,0 +1,30 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div class="container">
+    <h2 class="my-4">Request Tracking</h2>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Request ID</th>
+                <th>Type</th>
+                <th>Details</th>
+                <th>Status</th>
+                <th>Submitted At</th>
+                <th>Resolved At</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ request.id }}</td>
+                <td>{{ request.get_request_type_display }}</td>
+                <td>{{ request.details }}</td>
+                <td>{{ request.get_status_display }}</td>
+                <td>{{ request.submitted_at|date:"Y-m-d H:i" }}</td>
+                <td>{{ request.resolved_at|date:"Y-m-d H:i" }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="{% url 'track_requests_list' %}" class="btn btn-secondary">Back to Requests List</a>
+</div>
+{% endblock %}

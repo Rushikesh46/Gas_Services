@@ -1,0 +1,43 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div class="container">
+    <h2 class="my-4">Manage Service Requests</h2>
+    <form method="post">
+        {% csrf_token %}
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Customer</th>
+                    <th>Type</th>
+                    <th>Status</th>
+                    <th>Submitted</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for request in requests %}
+                <tr>
+                    <td>{{ request.id }}</td>
+                    <td>{{ request.customer.user.username }}</td>
+                    <td>{{ request.get_request_type_display }}</td>
+                    <td>
+                        <select class="form-control" name="status_{{ request.id }}">
+                            <option value="PENDING" {% if request.status == 'PENDING' %}selected{% endif %}>Pending</option>
+                            <option value="IN_PROGRESS" {% if request.status == 'IN_PROGRESS' %}selected{% endif %}>In Progress</option>
+                            <option value="RESOLVED" {% if request.status == 'RESOLVED' %}selected{% endif %}>Resolved</option>
+                        </select>
+                    </td>
+                    <td>{{ request.submitted_at|date:"Y-m-d H:i" }}</td>
+                    <td>
+                        <a href="{% url 'track_request' request.id %}" class="btn btn-info btn-sm">View</a>
+                        <button type="submit" class="btn btn-primary btn-sm" name="update_{{ request.id }}" value="{{ request.id }}">Update</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </form>
+</div>
+{% endblock %}

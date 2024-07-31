@@ -1,0 +1,24 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div class="container">
+    <h2 class="my-4">Login</h2>
+    <form method="post" class="form-inline">
+        {% csrf_token %}
+        <div class="form-group mb-3 mr-2">
+            <label for="username" class="sr-only">Username:</label>
+            <input type="text" id="username" name="username" class="form-control" placeholder="Username" required>
+        </div>
+        <div class="form-group mb-3 mr-2">
+            <label for="password" class="sr-only">Password:</label>
+            <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+        </div>
+        {% if error %}
+            <div class="alert alert-danger" role="alert">
+                {{ error }}
+            </div>
+        {% endif %}
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+</div>
+{% endblock %}

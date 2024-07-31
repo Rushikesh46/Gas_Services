@@ -1,0 +1,25 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div class="container">
+    <h2 class="my-4">Update Service Request</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.status.label_tag }}
+            {{ form.status }}
+            {% if form.status.errors %}
+                <div class="text-danger">{{ form.status.errors }}</div>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.resolved_at.label_tag }}
+            {{ form.resolved_at}}
+            {% if form.resolved_at.errors %}
+                <div class="text-danger">{{ form.resolved_at.errors }}</div>
+            {% endif %}
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+</div>
+{% endblock %}

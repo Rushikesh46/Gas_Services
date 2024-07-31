@@ -1,0 +1,20 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div class="container">
+    <h2 class="my-4">Account Information</h2>
+    <dl class="row">
+        <dt class="col-sm-3">Username:</dt>
+        <dd class="col-sm-9">{{ user.username }}</dd>
+
+        <dt class="col-sm-3">Email:</dt>
+        <dd class="col-sm-9">{{ user.email }}</dd>
+
+        <dt class="col-sm-3">Address:</dt>
+        <dd class="col-sm-9">{{ user.customer.address }}</dd>
+
+        <dt class="col-sm-3">Phone Number:</dt>
+        <dd class="col-sm-9">{{ user.customer.phone }}</dd>
+    </dl>
+</div>
+{% endblock %}

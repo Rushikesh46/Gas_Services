@@ -1,0 +1,32 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div class="container">
+    <h2 class="my-4">Submit Service Request</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.request_type.label_tag }}
+            {{ form.request_type }}
+            {% if form.request_type.errors %}
+                <div class="text-danger">{{ form.request_type.errors }}</div>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.details.label_tag }}
+            {{ form.details }}
+            {% if form.details.errors %}
+                <div class="text-danger">{{ form.details.errors }}</div>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.attachment.label_tag }}
+            {{ form.attachment }}
+            {% if form.attachment.errors %}
+                <div class="text-danger">{{ form.attachment.errors }}</div>
+            {% endif %}
+        </div>
+        <button type="submit" class="btn btn-primary">Submit Request</button>
+    </form>
+</div>
+{% endblock %}
