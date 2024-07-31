@@ -31,7 +31,7 @@
                     </td>
                     <td>{{ request.submitted_at|date:"Y-m-d H:i" }}</td>
                     <td>
-                        <a href="{% url 'track_request' request.id %}" class="btn btn-info btn-sm">View</a>
+                        
                         <button type="submit" class="btn btn-primary btn-sm" name="update_{{ request.id }}" value="{{ request.id }}">Update</button>
                     </td>
                 </tr>
